@@ -1,0 +1,19 @@
+{
+  "name": "assignmentproject",
+  "version": "1.0.0",
+  "description": "This is the final assignment project for the open source software course.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kezaio/assignmentProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kezaio/assignmentProject/issues"
+  },
+  "homepage": "https://github.com/Kezaio/assignmentProject#readme"
+}
