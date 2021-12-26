@@ -4,9 +4,15 @@
     list-style: none;
 }
 .container-fluid{
-    height:100vh;
+    height:99vh;
 }
 .col-sm-2{
-    height:100vh;
+    height:99vh;
     background-color: #e9e5e5;
+}
+#name{
+    color:white;
+    position:absolute;
+    right:10px;
+    top:15px
 }
