@@ -3,3 +3,10 @@
     padding: 0;
     list-style: none;
 }
+.container-fluid{
+    height:100vh;
+}
+.col-sm-2{
+    height:100vh;
+    background-color: #e9e5e5;
+}
