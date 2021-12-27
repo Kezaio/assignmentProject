@@ -16,6 +16,12 @@
     right:10px;
     top:15px
 }
+#register{
+    color:rgb(92, 126, 236);
+    position:absolute;
+    right:10px;
+    top:15px
+}
 .login-all{
     width:100vw;
     height:100vh;
@@ -28,7 +34,7 @@
     height:30vw;
     position:absolute;
     top:15%;
-    left:30%;
+    left:25%;
     background-color: rgba(238, 240, 240, 0.897);
     text-align: center;
 }

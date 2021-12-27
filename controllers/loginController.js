@@ -1,32 +1,82 @@
-var Login = require('../models/login');
+var User = require('../models/user');
 
 var async = require('async');
 
+// Display Author create form on GET
+exports.register_get = function (req, res, next) {
+  res.render('register', { title: 'register' });
+};
+
+// 注册
+exports.register_post = function (req, res, next) {
+  req.checkBody('username', 'username must be specified.').notEmpty(); //We won't force Alphanumeric, because people might have spaces.
+  req.checkBody('password', 'password must be specified.').notEmpty();
+
+  var errors = req.validationErrors();
+  var user = new User ({
+    username: req.body.username,
+    password: req.body.password
+  });
+console.log('user',user);
+  if (errors) {
+    res.render('register', { title: 'register',  errors: errors });
+    return;
+  }
+  else {
+    user.save(function (err) {
+      if (err) return next(err);
+      res.redirect('/login');
+    });
+  }
+};
+
+
+
 // Handle Author create on POST
 exports.login_yesorno = function (req, res, next) {
-  async.parallel({
-    book_count: function (callback) {
-      Book.count(callback);
-    },
-    book_instance_count: function (callback) {
-      BookInstance.count(callback);
-    },
-    book_instance_available_count: function (callback) {
-      BookInstance.count({ status: 'Available'}, callback);
-    },
-    author_count: function (callback) {
-      Author.count(callback);
-    },
-    genre_count: function (callback) {
-      Genre.count(callback);
-    },
-  }, function (err, results) {
-    res.render('index', { title: 'Local Library Home', error: err, data: results })
+  res.render('login', { title: 'Create Author' });
+};
+
+
+// Display Author create form on GET
+exports.login_get = function (req, res, next) {
+  console.log('login_get');
+  res.render('login', { title: 'Create Author' });
+};
+
+// 登录
+exports.login_post = function (req, res, next) {
+  req.checkBody('username', 'username must be specified.').notEmpty(); //We won't force Alphanumeric, because people might have spaces.
+  req.checkBody('password', 'password must be specified.').notEmpty();
+
+  var errors = req.validationErrors();
+  var user = new User ({
+    username: req.body.username,
+    password: req.body.password
   });
+console.log('user',user);
+  if (errors) {
+    res.render('login', { title: 'login',  errors: errors });
+    return;
+  }
+  else {
+    var query = User.findOne({
+      username: req.body.username,
+      password: req.body.password
+    });
+query.select();
+query.exec(function (err, person) {
+    if (err) {
+        console.log('select failed');
+    } else {
+        console.log(person);
+        res.redirect('/catalog');
+    }
+});
+  }
 };
-exports.register = function (req, res, next) {
-    console.log('register');
-};
+
+
 // Display author list
 exports.author_list = function (req, res, next) {
   Author.find()
@@ -35,136 +85,4 @@ exports.author_list = function (req, res, next) {
       // succesful rendering
       res.render('author_list', { title: 'Author List', author_list: list_authors });
     });
-};
-
-// Display detail page for a specific Author
-exports.author_detail = function (req, res, next) {
-  async.parallel({
-    author: function(callback) {
-      Author.findById(req.params.id)
-        .exec(callback);
-    },
-    author_books: function(callback) {
-      Book.find({ 'author': req.params.id}, 'title summary')
-        .exec(callback);
-    },
-  }, function (err, results) {
-    if (err) return next(err);
-    res.render('author_detail', { title: 'Author Detail', author: results.author, author_books: results.author_books});
-  });
-};
-
-// Display Author create form on GET
-exports.author_create_get = function (req, res, next) {
-  res.render('author_form', { title: 'Create Author' });
-};
-
-
-// Display Author delete form on GET
-exports.author_delete_get = function (req, res, next) {
-  async.parallel({
-    author: function (callback) {
-      Author.findById(req.params.id).exec(callback);
-    },
-    authors_books: function (callback) {
-      Book.find({ 'author': req.params.id }).exec(callback);
-    },
-  }, function (err, results) {
-    if (err) { return next(err); }
-    //Successful, so render
-    res.render('author_delete', { title: 'Delete Author', author: results.author, author_books: results.authors_books });
-  });
-};
-
-// Handle Author delete on POST
-exports.author_delete_post = function (req, res, next) {
-  req.checkBody('authorid', 'Author id must exist').notEmpty();
-
-  async.parallel({
-    author: function (callback) {
-      Author.findById(req.body.authorid).exec(callback);
-    },
-    authors_books: function (callback) {
-      Book.find({ 'author': req.body.authorid }, 'title summary').exec(callback);
-    },
-  }, function (err, results) {
-    if (err) return next(err); 
-    // When Success
-    if (results.authors_books > 0) {
-      //Author has books. Render in same way as for GET route.
-      res.render('author_delete', { title: 'Delete Author', author: results.author, author_books: results.authors_books });
-      return;
-    }
-    else {
-      //Author has no books. Delete object and redirect to the list of authors.
-      Author.findByIdAndRemove(req.body.authorid, function deleteAuthor(err) {
-        if (err) { return next(err); }
-        //Success - got to author list
-        res.redirect('/catalog/authors');
-      });
-
-    }
-  });
-};
-
-// Display Author update form on GET
-exports.author_update_get = function (req, res, next) {
-
-  req.sanitize('id').escape();
-  req.sanitize('id').trim();
-  Author.findById(req.params.id, function (err, author) {
-    if (err) { return next(err); }
-    //On success
-    res.render('author_form', { title: 'Update Author', author: author });
-
-  });
-};
-
-// Handle Author update on POST
-exports.author_update_post = function (req, res, next) {
-
-  req.sanitize('id').escape();
-  req.sanitize('id').trim();
-
-  req.checkBody('first_name', 'First name must be specified.').notEmpty();
-  req.checkBody('family_name', 'Family name must be specified.').notEmpty();
-  req.checkBody('family_name', 'Family name must be alphanumeric text.').isAlpha();
-  req.checkBody('date_of_birth', 'Invalid date').optional({ checkFalsy: true }).isDate();
-  req.checkBody('date_of_death', 'Invalid date').optional({ checkFalsy: true }).isDate();
-  req.sanitize('first_name').escape();
-  req.sanitize('family_name').escape();
-  req.sanitize('first_name').trim();
-  req.sanitize('family_name').trim();
-  req.sanitize('date_of_birth').toDate();
-  req.sanitize('date_of_death').toDate();
-
-  //Run the validators
-  var errors = req.validationErrors();
-
-  //Create a author object with escaped and trimmed data (and the old id!)
-  var author = new Author(
-    {
-      first_name: req.body.first_name,
-      family_name: req.body.family_name,
-      date_of_birth: req.body.date_of_birth,
-      date_of_death: req.body.date_of_death,
-      _id: req.params.id
-    }
-  );
-
-  if (errors) {
-    //If there are errors render the form again, passing the previously entered values and errors
-    res.render('author_form', { title: 'Update Author', author: author, errors: errors });
-    return;
-  }
-  else {
-    // Data from form is valid. Update the record.
-    Author.findByIdAndUpdate(req.params.id, author, {}, function (err, theauthor) {
-      if (err) { return next(err); }
-      //successful - redirect to genre detail page.
-      res.redirect(theauthor.url);
-    });
-  }
-
-
 };

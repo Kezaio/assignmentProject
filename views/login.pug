@@ -1,17 +1,20 @@
-doctype html 
-html(lang='en')
-  head
-    title= title
-    meta(charset='utf-8')
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
-    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
-    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    div(class="login-all" )
-      div(class="login-window")
+extends loginbackground
 
-      
+block content
+  h1 login
+  hr
+  form(method='POST' action='' style="text-align:center")
+    div.form-group
+      label(for='username') username:
+      input#name.form-control(type='text', placeholder='username' name='username' value=(undefined===username ? '' : username) required='true' style="width:50%;text-align:center;margin-left:25%")
+      label(for='password') password:
+      input#name.form-control(type='text', placeholder='password' name='password' value=(undefined===password ? '' : password) required='true' style="width:50%;text-align:center;margin-left:25%")
+    button.btn.btn-primary(type='submit') Submit
+  div()
+    a(href="/register" style="font-size:20px" id="register") → to register
+  if errors 
+    ul
+      for error in errors
+        li!= error.msg
 
           

@@ -1,15 +1,16 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var LoginSchema = Schema ({
+var user = Schema ({
+  // id:{type: Schema.ObjectId,},
   username: { type: String, required: true},
   password: { type: String, required: true},
 });
 
-LoginSchema
+user
 .virtual('url')
 .get(function (){
-  return '/login/' + this._id;
+  return '/register/' + this._id;
 });
 
-module.exports = mongoose.model('Login', LoginSchema)
+module.exports = mongoose.model('users', user)
