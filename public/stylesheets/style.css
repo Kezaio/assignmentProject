@@ -4,15 +4,31 @@
     list-style: none;
 }
 .container-fluid{
-    height:99vh;
+    height:cale('99vh-10px');
 }
 .col-sm-2{
-    height:99vh;
+    height:cale('99vh-10px');
     background-color: #e9e5e5;
 }
-#name{
+#nav-username{
     color:white;
     position:absolute;
     right:10px;
     top:15px
+}
+.login-all{
+    width:100vw;
+    height:100vh;
+    /* background-color: aqua; */
+    background-image: url('../image/background.jpg');
+    background-size: 100% 110%;
+}
+.login-window{
+    width:50vw;
+    height:30vw;
+    position:absolute;
+    top:15%;
+    left:30%;
+    background-color: rgba(238, 240, 240, 0.897);
+    text-align: center;
 }

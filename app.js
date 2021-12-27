@@ -11,10 +11,12 @@ var helmet = require('helmet');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var catalog = require('./routes/catalog');
+var login = require('./routes/login');
 
 var app = express();
 
 // view engine setup
+var userrealname='';
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -30,6 +32,7 @@ app.use(helmet());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/login', login);
 app.use('/users', users);
 app.use('/catalog', catalog);
 

@@ -6,8 +6,12 @@ var book_controller = require('../controllers/bookController');
 var book_instance_controller = require('../controllers/bookinstanceController');
 var author_controller = require('../controllers/authorController');
 var genre_controller = require('../controllers/genreController');
+var login_Controller=require('../controllers/loginController');
 
-// book routes 
+
+// // Login
+// router.get('/login', login_Controller.login_yesorno);
+
 // Get catalog homepage
 router.get('/', book_controller.index);
 
