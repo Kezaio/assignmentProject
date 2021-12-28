@@ -93,11 +93,6 @@ console.log('user',user);
 
 
 // Display author list
-exports.author_list = function (req, res, next) {
-  Author.find()
-    .sort([['family_name', 'ascending']])
-    .exec(function (err, list_authors) {
-      // succesful rendering
-      res.render('author_list', { title: 'Author List', author_list: list_authors });
-    });
+exports.isnotmanage = function (req, res, next) {
+      res.render('isnotManage', { title: 'error', message:'您不是管理员，没有权限！'});
 };

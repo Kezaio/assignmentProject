@@ -16,7 +16,6 @@ var register = require('./routes/register');
 var app = express();
 
 // view engine setup
-var userrealname='';
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -36,6 +35,7 @@ app.use('/login', login);
 app.use('/register', register);
 app.use('/users', users);
 app.use('/catalog', catalog);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

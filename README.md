@@ -12,9 +12,7 @@
 
 ### （2）引入的包在项目中的作用相关说明；
 
-
 ### （3）项目目录结构和各个部分的说明。
-
 
 ## 2）使用说明书：
 
@@ -31,7 +29,6 @@ $ DEBUG=Library-Management-V1:* npm run devstart
 
 After these step head to localhost:3000 and you should see the site up and running there.
 Also, you may want to go to `app.js` and replace `var mongoDB` with another value so that it suits your database setting.
-
 
 ## 3）开发日记（与commit对应
 
