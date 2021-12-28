@@ -9,7 +9,11 @@ block content
             input#name.form-control(type='text', placeholder='username' name='username' value=(undefined===username ? '' : username) required='true' style="width:50%;text-align:center;margin-left:25%")
             label(for='password') password:
             input#name.form-control(type='text', placeholder='password' name='password' value=(undefined===password ? '' : password) required='true' style="width:50%;text-align:center;margin-left:25%")
-        button.btn.btn-primary(type='submit') Submit
+            if passwordWrong
+                h6(style="color:red") #{passwordWrong}
+                button.btn.btn-primary(type='submit') Submit
+            else 
+                button.btn.btn-primary(type='submit' style="margin-top:5%") Submit
     div()
         a(href="/login" style="font-size:20px" id="register") → back login
 
