@@ -26,5 +26,18 @@
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
-  }
+  },
+  "description": "> 由Express和MongoDB制作",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kezaio/assignmentProject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kezaio/assignmentProject/issues"
+  },
+  "homepage": "https://github.com/Kezaio/assignmentProject#readme"
 }

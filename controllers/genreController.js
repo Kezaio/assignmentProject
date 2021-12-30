@@ -31,7 +31,6 @@ exports.genre_detail = function (req, res, next) {
     res.render('genre_detail', { title: 'Genre Detail', genre: results.genre, genre_books: results.genre_books });
   });
 };
-
 // Display Genre create form on GET
 exports.genre_create_get = function (req, res) {
   res.render('genre_form', { title: 'Create Genre'});

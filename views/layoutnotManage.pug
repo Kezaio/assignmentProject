@@ -11,46 +11,41 @@ html(lang='en')
   body
     div(class="navbar navbar-inverse" style="margin-bottom:0;width:100vw;color:white")
       div(class='row' style="margin-right:0px")
-        div(class='col-sm-1')
-          div(class="imagetitle")
         div(class='col-sm-3')
-          h3(style="color:white;" ) 图书馆图书管理系统
-        div(class='col-sm-4')
+          h3(style="color:white") Library management
+        div(class='col-sm-5')
         div(class='col-sm-1')
           a(href="#" style="color:white;" id="nav-username") Help
         div(class='col-sm-1')
           a(href="#" style="color:white" id="nav-username") Settings
         div(class='col-sm-1')
           a(href="/login" id="nav-username" )  exit
-        div(class='col-sm-1')
-          a(href="/login" id="nav-username" )  #{loginname}
-    div(class='container-fluid') 
+    div(class='container-fluid')
       div(class='row')
         div(class='col-sm-2')
             ul(class="nav nav-pills nav-stacked")
               li
-                a(href='/catalog') Home
+                a(href='/catalognotManage') Home
               li 
-                a(href='/catalog/books') All books
+                a(href='/catalognotManage/books') All books
               li 
-                a(href='/catalog/authors') All authors
+                a(href='/catalognotManage/authors') All authors
               li 
-                a(href='/catalog/genres') All genres
+                a(href='/catalognotManage/genres') All genres
               li 
-                a(href='/catalog/bookinstances') All book-instances
+                a(href='/catalognotManage/bookinstances') All book-instances
               li 
                 hr
               li 
-                a(href='/catalog/author/create') Create new author
+                a(href='/catalognotManage/author/create') Create new author
               li 
-                a(href='/catalog/genre/create') Create new genre
+                a(href='/catalognotManage/genre/create') Create new genre
               li 
-                a(href='/catalog/book/create') Create new book
+                a(href='/catalognotManage/book/create') Create new book
               li 
-                a(href='/catalog/bookinstance/create') Create new book instance (copy)
-            div(class='gif')   
+                a(href='/catalognotManage/bookinstance/create') Create new book instance (copy)
+                
         div(class='col-sm-10')
-          div(class='mask')
-            block content
+          block content
 
           

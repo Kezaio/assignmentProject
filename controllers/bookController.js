@@ -5,7 +5,6 @@ var BookInstance = require('../models/bookinstance');
 
 var async = require('async');
 
-
 exports.index = function (req, res) {
   async.parallel({
     book_count: function (callback) {
@@ -57,6 +56,7 @@ exports.book_detail = function (req, res) {
     res.render('book_detail', { title: 'Title', book: results.book, book_instances: results.book_instance });
   });
 };
+
 
 // Display book create form on GET
 exports.book_create_get = function (req, res, next) {

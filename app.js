@@ -11,6 +11,7 @@ var helmet = require('helmet');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var catalog = require('./routes/catalog');
+var catalognotManage=require('./routes/catalognotManage');
 var login = require('./routes/login');
 var register = require('./routes/register');
 var app = express();
@@ -35,7 +36,7 @@ app.use('/login', login);
 app.use('/register', register);
 app.use('/users', users);
 app.use('/catalog', catalog);
-
+app.use('/catalognotManage',catalognotManage);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

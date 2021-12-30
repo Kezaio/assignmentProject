@@ -52,7 +52,7 @@ exports.login_get = function (req, res, next) {
 exports.login_post = function (req, res, next) {
   req.checkBody('username', 'username must be specified.').notEmpty(); //We won't force Alphanumeric, because people might have spaces.
   req.checkBody('password', 'password must be specified.').notEmpty();
-
+  var name='';
   var errors = req.validationErrors();
   var user = new User ({
     username: req.body.username,
@@ -79,7 +79,12 @@ console.log('user',user);
             console.log(person._doc.password);
             //判断密码是否正确
             if(person._doc.password===req.body.password){
-              res.redirect('/catalog');
+              // name = req.body.username;
+              // if(req.body.username==='admin'){
+                res.redirect('/catalog');
+              // }else{
+              //   res.redirect('/catalognotManage');
+              // }
             }else{
               res.render('login', { title: 'login', passwordWrong:"密码错误！",username:req.body.username,password:req.body.password });
             }
@@ -90,7 +95,6 @@ console.log('user',user);
     });
   }
 };
-
 
 // Display author list
 exports.isnotmanage = function (req, res, next) {
