@@ -34,10 +34,10 @@
 }
 .mask{
     width:100%;
-    height: 98%;
+    height: 100%;
     /* position:absolute; */
     /* top:0; */
-    padding-top:1vw;
+    padding-top:0.1vw;
     padding-left: 1.5vw;
     background-color: #eaecee9a;
     border-radius: 4px;
