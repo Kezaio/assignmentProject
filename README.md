@@ -4,7 +4,17 @@
 
 #简易图书馆管理系统
 
-> 由Express和MongoDB制作
+> 主要由Express和MongoDB制作
+>
+> * Node (via Express Framework)
+> * MongoDB (via Mongoose ODM)
+> * Pug (as a templating engine)
+> * Other small dependencies like
+>   - Async
+>   - Express-validator
+>   - Helmet
+>   - Moment
+>   - Compression
 
 这是一个简单的图书馆管理系统。
 
@@ -22,30 +32,25 @@
 
 ### （3）项目目录结构和各个部分的说明。
 
-整个项目包括登录页面和内部管理界面。
+bin：执行npm run devstart命令时会执行其中的www文件，开启server服务
 
-1.登录界面：主要实现用户的登录和注册。
+controllers:数据库操作语句模块文件，包括find查询，`save`保存等语句，以及页面渲染
 
-2.内部管理界面包括：
+image:图片文件
 
-Home：可以查看图书馆所有的图书情况，有多少本书，有多少个作者，有多少个副本等
+models:建立mongose的数据集模型 `Schema`
 
-All books:可以查看内部包含的所有的图书。
+public:包含图片文件和css设置文件
 
-All authors:可以查看所有的作者
+routes:设置路由
 
-All genres:可以查看所有的书籍体裁
+views:前端pug页面
 
-All book-instances:可以查看图书的图书实例列表
+app.js:引入express，设置路由，连接mongo数据库
 
-Create new author:创建新的作者
+package.json:init配置文件
 
-Create new genre:创建新的籍体裁作
-
-Create new book:创建新的书籍
-
-Create new book instances:创建新的图书实例
-
+readme.md:项目介绍和说明文件
 
 ## 2）使用说明书：
 
@@ -65,6 +70,24 @@ Also, you may want to go to `app.js` and replace `var mongoDB` with another valu
 
 3.点击左侧目录可以进入到对应的页面，其中包括新增，修改和查看图书、作者、书籍体裁、图书副本等
 
+Home：可以查看图书馆所有的图书情况，有多少本书，有多少个作者，有多少个副本等
+
+All books:可以查看内部包含的所有的图书。
+
+All authors:可以查看所有的作者
+
+All genres:可以查看所有的书籍体裁
+
+All book-instances:可以查看图书的图书实例列表
+
+Create new author:创建新的作者
+
+Create new genre:创建新的籍体裁作
+
+Create new book:创建新的书籍
+
+Create new book instances:创建新的图书实例
+
 ## 3）开发日记（与commit对应）
 
 1.[Initial commit](https://github.com/Kezaio/assignmentProject/commit/044d2a31748688ff17f062bb27822df6afad412d)   初始创建项目并提交
@@ -79,16 +102,15 @@ Also, you may want to go to `app.js` and replace `var mongoDB` with another valu
 
 6.[新增登录页面](https://github.com/Kezaio/assignmentProject/commit/5ac8ed0f4bbf0d41b7ca28c538279fafd244fdba)    添加登录和注册页面，添加登录界面路由
 
-7.[新增登录和注册页面，并能实现登录跳转](https://github.com/Kezaio/assignmentProject/commit/15db61ad1398bfc717b1300034b77dbc825364c0) 
+7.[新增登录和注册页面，并能实现登录跳转](https://github.com/Kezaio/assignmentProject/commit/15db61ad1398bfc717b1300034b77dbc825364c0)
 
 8.[新增登陆注册时的错误提示](https://github.com/Kezaio/assignmentProject/commit/7f6471d55aa4b790538baafbe65a5986fae1d5d3)   注册或者登录失误时能给与提示
 
-9.[添加管理员限制](https://github.com/Kezaio/assignmentProject/commit/c8db66f5a451d11e8744ef10b27c7226fa245f3b)  
+9.[添加管理员限制](https://github.com/Kezaio/assignmentProject/commit/c8db66f5a451d11e8744ef10b27c7226fa245f3b)
 
 10.[修改页面样式，新增图片](https://github.com/Kezaio/assignmentProject/commit/ae6ff8ff0eff6dfc6b72d8fe65edc5448507b200)  添加部分背景图片
 
 11.[修改readme文档](https://github.com/Kezaio/assignmentProject/commit/ecfeaf8eb70688a78bc27d3a2bcfa24998205980) 完善readme文档
-
 
 ## 4）Built With
 
